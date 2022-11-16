@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./css/style.css">
+		<link rel="shortcut icon" href="./img/ecommerce.png" type="image/x-icon">
+		<script src="./js/database.js" defer></script>
+		<script src="./js/index.js" defer></script>
+		<title>E-Commerce</title>
+	</head>
+
+	<body>
+		<header>
+			<h1>Weartake</h1>
+			<nav id="nav-area">
+				<ul id="nav-items">
+					<li class="all">Todos</li>
+					<li class="accessories">Acessórios</li>
+					<li class="shoes">Calçados</li>
+					<li class="t-shirts">Camisetas</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="container">
+			<main id="products">
+				<ul id="products-list">
+				</ul>
+			</main>
+			<aside id="cart-area">
+				<div id="search-area">
+					<input type='search' name='search-item' id='for-search' placeholder="Digite aqui sua pesquisa">
+					<button id="search-button">Pesquisar</button>
+				</div>
+				<div class='cart'>
+					<h3 id='cart-title'>Carrinho de compras</h3>
+					<ul class="cart-list">
+					</ul>
+				</div>
+				<div class="total">
+					<div class="amount">
+						<p>Quantidade:</p>
+						<p class="amount-cart"></p>
+					</div>
+					<div class="total-price">
+						<p>Total:</p>
+						<p class="total-cart"></p>
+					</div>
+				</div>
+			</aside>
+		</div>
+	</body>
+	<footer id="footer">
+		<img src="./img/copyright.png" alt="copyright">
+		<p>Todos os direitos reservados.</p>
+	</footer>
+
+</html>
