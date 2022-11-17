@@ -95,7 +95,6 @@ function removeButton() {
 			const toRemove = data[remove]; // info remove-data
 
 			if (idRemove == toRemove.id) { // if id-button = id-data
-				buttonCard.innerText = toRemove.addCart;
 				let price = toRemove.value; // data-price
 				valueCart -= price; // reload price
 			}
