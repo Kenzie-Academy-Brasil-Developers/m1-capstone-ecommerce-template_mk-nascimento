@@ -40,44 +40,38 @@ function addCartButton() {
 			const dataItem = data[add];
 
 			if (liButton.dataset.id == dataItem.id) {
+				forCart.push(dataItem.id);
 
-				if (!forCart.includes(dataItem.id)) {
-					forCart.push(dataItem.id);
-					e.target.classList.remove('add-cart');
-					e.target.classList.toggle('disabled');
-					e.target.innerText = 'No carrinho';
-					e.target.setAttribute('disabled', 'disabled');
+				const liCart = document.createElement('li');
+				liCart.dataset.id = liButton.dataset.id;
+				const imgCart = document.createElement('img');
+				const divContentCart = document.createElement('div');
+				const nameCart = document.createElement('p');
+				const priceCart = document.createElement('p');
+				const removeCart = removeButton();
+				let price = dataItem.value.toFixed(2);
+				valueCart += parseFloat(price);
+				let priceString = `R$ ${price.toString().substring(0, price.toString().length - 3)},${price.toString().substr(-2)}`;
 
-					const liCart = document.createElement('li');
-					liCart.dataset.id = liButton.dataset.id;
-					const imgCart = document.createElement('img');
-					const divContentCart = document.createElement('div');
-					const nameCart = document.createElement('p');
-					const priceCart = document.createElement('p');
-					const removeCart = removeButton();
-					let price = dataItem.value.toFixed(2);
-					valueCart += parseFloat(price);
-					let priceString = `R$ ${price.toString().substring(0, price.toString().length - 3)},${price.toString().substr(-2)}`;
+				priceCart.classList.add('price-cart');
+				divContentCart.classList.add('div-cart');
+				liCart.classList.add('li-cart');
 
-					priceCart.classList.add('price-cart');
-					divContentCart.classList.add('div-cart');
-					liCart.classList.add('li-cart');
+				imgCart.src = dataItem.img;
+				imgCart.alt = dataItem.nameItem;
+				nameCart.innerText = dataItem.nameItem;
+				priceCart.innerText = priceString;
 
-					imgCart.src = dataItem.img;
-					imgCart.alt = dataItem.nameItem;
-					nameCart.innerText = dataItem.nameItem;
-					priceCart.innerText = priceString;
+				liCart.appendChild(imgCart);
+				liCart.appendChild(divContentCart);
+				divContentCart.appendChild(nameCart);
+				divContentCart.appendChild(priceCart);
+				divContentCart.appendChild(removeCart);
+				cartList.appendChild(liCart);
 
-					liCart.appendChild(imgCart);
-					liCart.appendChild(divContentCart);
-					divContentCart.appendChild(nameCart);
-					divContentCart.appendChild(priceCart);
-					divContentCart.appendChild(removeCart);
-					cartList.appendChild(liCart);
+				amount.innerText = forCart.length;
+				totalCart.innerText = `R$ ${valueCart.toFixed(2).toString().substring(0, valueCart.toFixed(2).toString().length - 3)},${valueCart.toFixed(2).toString().substr(-2)}`;
 
-					amount.innerText = forCart.length;
-					totalCart.innerText = `R$ ${valueCart.toFixed(2).toString().substring(0, valueCart.toFixed(2).toString().length - 3)},${valueCart.toFixed(2).toString().substr(-2)}`;
-				}
 
 			}
 		}
@@ -97,11 +91,6 @@ function removeButton() {
 		forCart.splice(forCart.indexOf(idRemove)); // remove li-list
 		empty();
 
-		let buttonCard = document.querySelector('.button-' + idRemove); // button full list
-		buttonCard.removeAttribute('disabled', 'disabled'); // disable button
-		buttonCard.classList.toggle('disabled'); // class disable button toggle
-		buttonCard.classList.add('add-cart'); // return to add-cart button
-
 		for (let remove = 0; remove < data.length; remove++) {
 			const toRemove = data[remove]; // info remove-data
 
@@ -110,7 +99,6 @@ function removeButton() {
 				let price = toRemove.value; // data-price
 				valueCart -= price; // reload price
 			}
-
 		}
 		amount.innerText = forCart.length; // reload amount
 		totalCart.innerText = `R$ ${valueCart.toFixed(2).toString().substring(0, valueCart.toFixed(2).toString().length - 3)},${valueCart.toFixed(2).toString().substr(-2)}`; // total-cart
