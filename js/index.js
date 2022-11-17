@@ -1,6 +1,7 @@
 let accessories = [];
 let shoes = [];
 let tShirts = [];
+let search = [];
 for (let fill = 0; fill < data.length; fill++) {
 	if (data[fill].tag[0].toLowerCase() == 'acessórios') { accessories.push(data[fill]) }
 	if (data[fill].tag[0].toLowerCase() == 'sapatos') { shoes.push(data[fill]) }
@@ -10,6 +11,8 @@ for (let fill = 0; fill < data.length; fill++) {
 let forCart = [];
 let valueCart = 0;
 
+const input = document.querySelector('#for-search');
+const buttonSearch = document.querySelector('#search-button');
 const productsList = document.querySelector('#products-list');
 const cartList = document.querySelector('.cart-list');
 const amount = document.querySelector('.amount-cart');
@@ -179,146 +182,15 @@ function all(products) {
 }
 all(data);
 
-function acc(products) {
-	for (let item = 0; item < products.length; item++) {
-		//tags
-		const productItem = document.createElement('li');
-		const nameItem = document.createElement('p');
-		const photo = document.createElement('img');
-		const description = document.createElement('p');
-		const price = document.createElement('p');
-		const category = document.createElement('span');
-		const addCart = addCartButton();
-
-		// products
-		const content = products[item];
-		const contentPrice = 'R$ ' + content.value.toFixed(2);
-
-		// class
-		productItem.classList.add('card');
-		productItem.id = 'card-' + content.id;
-		productItem.dataset.id = content.id;
-		nameItem.classList.add('name-' + item, 'name-item');
-		description.classList.add('description-' + item, 'description')
-		price.classList.add('price-' + item, 'price');
-		category.classList.add('tag');
-		addCart.classList.add('button-' + content.id, 'add-cart');
-
-		// img
-		photo.src = content.img;
-		photo.alt = content.nameItem;
-
-		// text
-		category.innerText = content.tag[0];
-		nameItem.innerText = content.nameItem;
-		description.innerText = content.description;
-		price.innerText = contentPrice;
-		addCart.innerText = content.addCart;
-
-		// appendChild
-		productItem.appendChild(photo);
-		productItem.appendChild(category);
-		productItem.appendChild(nameItem);
-		productItem.appendChild(description);
-		productItem.appendChild(price);
-		productItem.appendChild(addCart);
-		productsList.appendChild(productItem);
+buttonSearch.addEventListener('click', (e) => { productsList.innerHTML = ''; searchArr = []; searchItem(); all(searchArr) });
+function searchItem() {
+	for (let search = 0; search < data.length; search++) {
+		let itemSearch = data[search]
+		let name = itemSearch.nameItem;
+		let description = itemSearch.description;
+		let searchFor = input.value;
+		if (searchFor != '' && searchFor != ' ' && name.toLowerCase().includes(searchFor.toLowerCase())) { searchArr.push(itemSearch) }
+		else if (searchFor != '' && searchFor != ' ' && description.toLowerCase().includes(searchFor.toLowerCase())) { searchArr.push(itemSearch) }
 	}
-	return;
-}
-
-function shoe(products) {
-	for (let item = 0; item < products.length; item++) {
-		//tags
-		const productItem = document.createElement('li');
-		const nameItem = document.createElement('p');
-		const photo = document.createElement('img');
-		const description = document.createElement('p');
-		const price = document.createElement('p');
-		const category = document.createElement('span');
-		const addCart = addCartButton();
-
-		// products
-		const content = products[item];
-		const contentPrice = 'R$ ' + content.value.toFixed(2);
-
-		// class
-		productItem.classList.add('card');
-		productItem.id = 'card-' + content.id;
-		productItem.dataset.id = content.id;
-		nameItem.classList.add('name-' + item, 'name-item');
-		description.classList.add('description-' + item, 'description')
-		price.classList.add('price-' + item, 'price');
-		category.classList.add('tag');
-		addCart.classList.add('button-' + content.id, 'add-cart');
-
-		// img
-		photo.src = content.img;
-		photo.alt = content.nameItem;
-
-		// text
-		category.innerText = content.tag[0];
-		nameItem.innerText = content.nameItem;
-		description.innerText = content.description;
-		price.innerText = contentPrice;
-		addCart.innerText = content.addCart;
-
-		// appendChild
-		productItem.appendChild(photo);
-		productItem.appendChild(category);
-		productItem.appendChild(nameItem);
-		productItem.appendChild(description);
-		productItem.appendChild(price);
-		productItem.appendChild(addCart);
-		productsList.appendChild(productItem);
-	}
-	return;
-}
-
-function tShirt(products) {
-	for (let item = 0; item < products.length; item++) {
-		//tags
-		const productItem = document.createElement('li');
-		const nameItem = document.createElement('p');
-		const photo = document.createElement('img');
-		const description = document.createElement('p');
-		const price = document.createElement('p');
-		const category = document.createElement('span');
-		const addCart = addCartButton();
-
-		// products
-		const content = products[item];
-		const contentPrice = 'R$ ' + content.value.toFixed(2);
-
-		// class
-		productItem.classList.add('card');
-		productItem.id = 'card-' + content.id;
-		productItem.dataset.id = content.id;
-		nameItem.classList.add('name-' + item, 'name-item');
-		description.classList.add('description-' + item, 'description')
-		price.classList.add('price-' + item, 'price');
-		category.classList.add('tag');
-		addCart.classList.add('button-' + content.id, 'add-cart');
-
-		// img
-		photo.src = content.img;
-		photo.alt = content.nameItem;
-
-		// text
-		category.innerText = content.tag[0];
-		nameItem.innerText = content.nameItem;
-		description.innerText = content.description;
-		price.innerText = contentPrice;
-		addCart.innerText = content.addCart;
-
-		// appendChild
-		productItem.appendChild(photo);
-		productItem.appendChild(category);
-		productItem.appendChild(nameItem);
-		productItem.appendChild(description);
-		productItem.appendChild(price);
-		productItem.appendChild(addCart);
-		productsList.appendChild(productItem);
-	}
-	return;
+	input.value = ''
 }
