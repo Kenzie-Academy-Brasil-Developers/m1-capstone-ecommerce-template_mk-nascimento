@@ -24,9 +24,9 @@ const shoesButton = document.querySelector('.shoes');
 const tShirtsButton = document.querySelector('.t-shirts');
 
 allButton.addEventListener('click', (e) => { productsList.innerHTML = ''; all(data) });
-accessoriesButton.addEventListener('click', (e) => { productsList.innerHTML = ''; acc(accessories) });
-shoesButton.addEventListener('click', (e) => { productsList.innerHTML = ''; shoe(shoes) });
-tShirtsButton.addEventListener('click', (e) => { productsList.innerHTML = ''; tShirt(tShirts) });
+accessoriesButton.addEventListener('click', (e) => { productsList.innerHTML = ''; all(accessories) });
+shoesButton.addEventListener('click', (e) => { productsList.innerHTML = ''; all(shoes) });
+tShirtsButton.addEventListener('click', (e) => { productsList.innerHTML = ''; all(tShirts) });
 
 function addCartButton() {
 	const addCartItem = document.createElement('button');
