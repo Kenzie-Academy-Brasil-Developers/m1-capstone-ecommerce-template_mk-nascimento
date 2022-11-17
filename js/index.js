@@ -1,7 +1,7 @@
 let accessories = [];
 let shoes = [];
 let tShirts = [];
-let search = [];
+let searchArr = [];
 for (let fill = 0; fill < data.length; fill++) {
 	if (data[fill].tag[0].toLowerCase() == 'acessórios') { accessories.push(data[fill]) }
 	if (data[fill].tag[0].toLowerCase() == 'sapatos') { shoes.push(data[fill]) }
