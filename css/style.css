@@ -35,7 +35,7 @@ header {
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 30px -5px;
 	display: flex;
 	justify-content: space-between;
-	padding: 10px 100px;
+	padding: 10px 80px;;
 	flex-wrap: wrap;
 	align-items: center;
 }
@@ -265,7 +265,7 @@ header nav li:focus {
 	color: rgb(245, 245, 245);
 	background: rgb(55, 38, 140);
 	border: 2px solid rgb(55, 38, 140);
-	height: 30px;
+	height: 26px;
 	padding: 10px;
 }
 
