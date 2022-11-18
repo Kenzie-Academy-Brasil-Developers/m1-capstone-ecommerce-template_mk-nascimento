@@ -4,10 +4,9 @@ let tShirts = [];
 let searchArr = [];
 for (let fill = 0; fill < data.length; fill++) {
 	if (data[fill].tag[0].toLowerCase() == 'acessórios') { accessories.push(data[fill]) }
-	if (data[fill].tag[0].toLowerCase() == 'sapatos') { shoes.push(data[fill]) }
-	if (data[fill].tag[0].toLowerCase() == 'camisetas') { tShirts.push(data[fill]) }
+	else if (data[fill].tag[0].toLowerCase() == 'sapatos') { shoes.push(data[fill]) }
+	else if (data[fill].tag[0].toLowerCase() == 'camisetas') { tShirts.push(data[fill]) }
 }
-// addCart
 let forCart = [];
 let valueCart = 0;
 
@@ -89,21 +88,21 @@ function removeButton() {
 	removeCartItem.classList.toggle('remove-button');
 
 	removeCartItem.addEventListener('click', (e) => {
-		let idRemove = e.target.parentNode.parentNode.dataset.id; // id -li
-		e.target.parentNode.parentNode.remove(); // remove li
-		forCart.splice(forCart.indexOf(idRemove)); // remove li-list
+		let idRemove = e.target.parentNode.parentNode.dataset.id;
+		e.target.parentNode.parentNode.remove();
+		forCart.splice(forCart.indexOf(idRemove));
 		empty();
 
 		for (let remove = 0; remove < data.length; remove++) {
-			const toRemove = data[remove]; // info remove-data
+			const toRemove = data[remove];
 
-			if (idRemove == toRemove.id) { // if id-button = id-data
-				let price = toRemove.value; // data-price
-				valueCart -= price; // reload price
+			if (idRemove == toRemove.id) {
+				let price = toRemove.value;
+				valueCart -= price;
 			}
 		}
-		amount.innerText = forCart.length; // reload amount
-		totalCart.innerText = `R$ ${valueCart.toFixed(2).toString().substring(0, valueCart.toFixed(2).toString().length - 3)},${valueCart.toFixed(2).toString().substr(-2)}`; // total-cart
+		amount.innerText = forCart.length;
+		totalCart.innerText = `R$ ${valueCart.toFixed(2).toString().substring(0, valueCart.toFixed(2).toString().length - 3)},${valueCart.toFixed(2).toString().substr(-2)}`;
 
 	})
 
@@ -132,10 +131,8 @@ function empty() {
 empty();
 
 function all(products) {
-	// Contém as informações de título, foto, descrição, preço, tag de categoria e um botão de adicionar ao carrinho.
 	productsList.innerHTML = '';
 	for (let item = 0; item < products.length; item++) {
-		//tags
 		const productItem = document.createElement('li');
 		const nameItem = document.createElement('p');
 		const photo = document.createElement('img');
@@ -144,11 +141,9 @@ function all(products) {
 		const category = document.createElement('span');
 		const addCart = addCartButton();
 
-		// products
 		const content = products[item];
 		const contentPrice = 'R$ ' + content.value.toFixed(2);
 
-		// class
 		productItem.classList.add('card');
 		productItem.id = 'card-' + content.id;
 		productItem.dataset.id = content.id;
@@ -158,18 +153,15 @@ function all(products) {
 		category.classList.add('tag');
 		addCart.classList.add('button-' + content.id, 'add-cart');
 
-		// img
 		photo.src = content.img;
 		photo.alt = content.nameItem;
 
-		// text
 		category.innerText = content.tag[0];
 		nameItem.innerText = content.nameItem;
 		description.innerText = content.description;
 		price.innerText = contentPrice;
 		addCart.innerText = content.addCart;
 
-		// appendChild
 		productItem.appendChild(photo);
 		productItem.appendChild(category);
 		productItem.appendChild(nameItem);
