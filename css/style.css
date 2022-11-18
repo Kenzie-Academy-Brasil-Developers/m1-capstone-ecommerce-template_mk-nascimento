@@ -73,15 +73,15 @@ header nav li:focus {
 
 #products {
 	margin-bottom: 10px;
-	width: 70%;
+	width: 840px;
 }
 
 #products-list {
 	box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 30px -20px;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 15px;
-	padding-left: 4px;
+	justify-content: center;
+	gap: 14px;
 }
 
 #products-list img {
@@ -264,13 +264,16 @@ header nav li:focus {
 	width: 70px;
 	color: rgb(245, 245, 245);
 	background: rgb(55, 38, 140);
+	border: 2px solid rgb(55, 38, 140);
 	height: 30px;
 	padding: 10px;
 }
 
 #search-button:hover,
 #search-button:focus {
-	border: 2px solid rgb(51, 51, 51);
+	border: 2px solid rgb(55, 38, 140);
+	background: rgb(245, 245, 245);
+	color: rgb(55, 38, 140);
 }
 
 #cart-title {
